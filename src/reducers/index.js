@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
-import datas from "./data";
+import dataReducer from "./dataKWh";
 
-export default combineReducers({
-  datas,
+const rootReducer = combineReducers({
+  dataGraphic: dataReducer,
 });
+
+export default rootReducer;

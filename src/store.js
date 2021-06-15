@@ -1,13 +1,13 @@
-import { createStore, applyMiddleware } from "redux";
+import { applyMiddleware, compose, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-import rootReducer from "./reducers";
+import rootReducer from "./reducers/index";
 
 const initialState = {
   sidebarShow: "responsive",
 };
 
-const middleware = [thunk];
+// const middleware = [thunk];
 
 const changeState = (state = initialState, { type, ...rest }) => {
   switch (type) {
@@ -18,15 +18,10 @@ const changeState = (state = initialState, { type, ...rest }) => {
   }
 };
 
-// const store = createStore(
-//   () => [],
-//   { changeState, initialState },
-//   applyMiddleware()
-// );
-
 const store = createStore(
-  changeState,
-  initialState,
-  composeWithDevTools(applyMiddleware(...middleware))
+  rootReducer,
+  //changeState,
+  //initialState,
+  composeWithDevTools(applyMiddleware(thunk))
 );
 export default store;
