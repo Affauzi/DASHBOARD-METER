@@ -17,7 +17,7 @@ import { time } from "echarts/core";
 
 const Charts = () => {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.dataGraphic);
+  const state = useSelector((state) => state.dataGraphics);
   console.log("state data;", state.data);
   const loading = true;
   const [num, setNum] = React.useState(15);

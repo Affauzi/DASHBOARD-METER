@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   CButton,
@@ -16,8 +16,44 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { Redirect, Route, Switch } from "react-router-dom";
+import { connect, useDispatch, useSelector } from "react-redux";
+import { getUser } from "../../../actions/user";
 
 const Login = () => {
+  // const [no_meter, setNo_Meter] = React.useState("");
+  // const [password, setPassword] = React.useState("");
+  const [nama, setNama] = React.useState("");
+  const [inputs, setInputs] = React.useState({
+    no_meter: "",
+    password: "",
+  });
+
+  const [submitted, setSubmitted] = React.useState(false);
+  const { no_meter, password } = inputs;
+
+  const state = useSelector((state) => state.userReducer);
+
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    dispatch(
+      getUser({
+        no_meter: inputs.no_meter,
+        password: inputs.password,
+        // nama: nama,
+        loggedIn: true,
+      })
+    );
+  };
+
+  const handleChange = (e) => {
+    const { no_meter, value } = e.target.value;
+    setInputs((prevState) => ({ ...prevState, [no_meter]: value }));
+    // this.setState({ [e.target]: e.target.value });
+  };
+
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
@@ -26,7 +62,7 @@ const Login = () => {
             <CCardGroup>
               <CCard className="p-4">
                 <CCardBody>
-                  <CForm>
+                  <CForm name="form" onSubmit={handleSubmit}>
                     <h1>Login</h1>
                     <p className="text-muted">Sign In to your account</p>
                     <CInputGroup className="mb-3">
@@ -37,8 +73,17 @@ const Login = () => {
                       </CInputGroupPrepend>
                       <CInput
                         type="text"
+                        className={"form-control"}
+                        id="no_meter"
+                        name="no_meter"
+                        value={inputs.no_meter}
                         placeholder="No Meter"
-                        autoComplete="nometer"
+                        autoComplete="no_meter"
+                        onChange={(e) => {
+                          handleChange(e);
+                        }}
+                        //autoComplete="nometer"
+                        // defaultValue="A"
                       />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
@@ -51,11 +96,24 @@ const Login = () => {
                         type="password"
                         placeholder="Password"
                         autoComplete="current-password"
+                        //defaultValue={"A"}
+                        value={inputs.password}
+                        onChange={handleChange}
+                        className={
+                          "form-control" +
+                          (submitted && !password ? " is-invalid" : "")
+                        }
                       />
                     </CInputGroup>
                     <CRow>
                       <CCol xs="6">
-                        <CButton color="primary" className="px-4">
+                        <CButton
+                          type="submit"
+                          color="primary"
+                          className="px-4"
+                          onClick={(e) => handleSubmit(e)}
+                          //onClick={handleSubmit}
+                        >
                           Login
                         </CButton>
                       </CCol>

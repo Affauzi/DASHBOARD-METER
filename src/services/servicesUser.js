@@ -6,10 +6,9 @@ class UserMeter {
     return http.get("/users/:no_meter");
   }
 
-  postUser() {
-    //get all data for table
-    return http.post("/users/");
-  }
+  create = (data) => {
+    return http.post("/users", data);
+  };
   //   get(id) {
   //     return http.get(`/tutorials/${id}`);
   //   }
