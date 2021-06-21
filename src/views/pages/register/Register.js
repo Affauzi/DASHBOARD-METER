@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
   CButton,
   CCard,
   CCardBody,
-  CCardFooter,
+  // CCardFooter,
   CCol,
   CContainer,
   CForm,
@@ -17,6 +17,7 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { createUser } from "../../../actions/user";
+// var validator = require("validator");
 
 const Register = () => {
   const initialUserState = {
@@ -45,7 +46,7 @@ const Register = () => {
   };
 
   const saveUser = () => {
-    const { no_meter, password, nama, status, re_password } = user;
+    const { no_meter, password, nama, status } = user;
 
     dispatch(createUser(no_meter, password, nama, status))
       .then((data) => {
@@ -63,10 +64,10 @@ const Register = () => {
       });
   };
 
-  const newUser = () => {
-    setUser(initialUserState);
-    setSubmitted(false);
-  };
+  // const newUser = () => {
+  //   setUser(initialUserState);
+  //   setSubmitted(false);
+  // };
 
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
@@ -94,12 +95,13 @@ const Register = () => {
                         className="form-control"
                         id="no_meter"
                         required
-                        value={user.no_meter}
+                        value={user.no_meter || ""}
                         onChange={handleInputChange}
                         name="no_meter"
                         placeholder="No Meter"
                         autoComplete="no_meter"
-                        //id="no_meter"
+                        // ref={register}
+                        //id="no_meter
                       />
                     </CInputGroup>
                     <CInputGroup className="mb-3">
@@ -111,11 +113,12 @@ const Register = () => {
                         className="form-control"
                         id="nama"
                         required
-                        value={user.nama}
+                        value={user.nama || ""}
                         onChange={handleInputChange}
                         name="nama"
                         placeholder="nama"
                         autoComplete="nama"
+                        // ref={register}
                         //id="nama"
                       />
                     </CInputGroup>
@@ -130,11 +133,12 @@ const Register = () => {
                         className="form-control"
                         id="password"
                         required
-                        value={user.password}
+                        value={user.password || ""}
                         onChange={handleInputChange}
                         name="password"
                         placeholder="password"
                         autoComplete="password"
+                        // ref={register}
                         //id="password"
                       />
                     </CInputGroup>
@@ -149,11 +153,12 @@ const Register = () => {
                         className="form-control"
                         id="re_password"
                         required
-                        value={user.re_password}
+                        value={user.re_password || ""}
                         onChange={handleInputChange}
-                        name="re-password"
+                        name="re_password"
                         placeholder="Repeat password"
-                        autoComplete="re-password"
+                        autoComplete="re_password"
+                        // ref={register}
                       />
                     </CInputGroup>
                     <CButton

@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import dataReducer from "./dataKWh";
+import dataReducer from "./dataMeter";
 import userReducer from "./user";
 
 const rootReducer = combineReducers({

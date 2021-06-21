@@ -5,6 +5,9 @@ class DataAntares {
     //get all data for table
     return http.get("/data");
   }
+  getOne() {
+    return http.get("/data/90111393");
+  }
 
   //   get(id) {
   //     return http.get(`/tutorials/${id}`);

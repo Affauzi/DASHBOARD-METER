@@ -32,6 +32,8 @@ function userReducer(state = initialState, action) {
         loading: true,
         no_meter: payload.no_meter,
         password: payload.password,
+        nama: payload.nama,
+        status: payload.status,
       };
     case SUCCESS_RETRIEVE_USER:
       return {
@@ -39,6 +41,8 @@ function userReducer(state = initialState, action) {
         loading: false,
         no_meter: payload.no_meter,
         password: payload.password,
+        nama: payload.nama,
+        status: payload.status,
       };
     case FAILED_RETRIEVE_USER:
       return {
@@ -46,6 +50,8 @@ function userReducer(state = initialState, action) {
         loading: false,
         no_meter: null,
         password: null,
+        nama: null,
+        status: null,
       };
     default:
       return state;

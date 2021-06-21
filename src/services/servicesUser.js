@@ -1,10 +1,10 @@
 import http from "../http-common";
 
 class UserMeter {
-  getOne() {
+  login = (data) => {
     //get all data for table
-    return http.get("/users/:no_meter");
-  }
+    return http.post("/login", data);
+  };
 
   create = (data) => {
     return http.post("/users", data);

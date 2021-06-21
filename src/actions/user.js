@@ -28,32 +28,39 @@ export const createUser =
     }
   };
 
-export const getUser =
-  ({ no_meter, password }) =>
-  async (dispatch) => {
-    try {
-      const res = await UserService.getOne;
+export const loginUser = (no_meter, password) => async (dispatch) => {
+  try {
+    const res = await UserService.login({
+      no_meter,
+      password,
+    });
 
-      const no_meter = [];
-      const password = [];
-      dispatch({
-        type: REQUEST_RETRIEVE_USER,
-        // payload: res.data,
-      });
+    // const no_meter = [];
+    // const password = [];
+    // const nama = [];
+    // const status = [];
 
-      dispatch({
-        type: SUCCESS_RETRIEVE_USER,
-        payload: {
-          no_meter,
-          password,
-        },
-      });
-      console.log("response: ", res);
-    } catch (err) {
-      dispatch({
-        type: FAILED_RETRIEVE_USER,
-      });
-    }
-  };
+    dispatch({
+      type: REQUEST_RETRIEVE_USER,
+      payload: res.data,
+    });
+
+    dispatch({
+      type: SUCCESS_RETRIEVE_USER,
+      payload: res.data,
+      // payload: {
+      //   no_meter,
+      //   password,
+      // },
+    });
+    console.log("response: ", res.data);
+    return Promise.resolve(res.data);
+  } catch (err) {
+    dispatch({
+      type: FAILED_RETRIEVE_USER,
+    });
+    return Promise.reject(err);
+  }
+};
 
 //

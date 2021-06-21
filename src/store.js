@@ -1,11 +1,11 @@
-import { applyMiddleware, compose, createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import rootReducer from "./reducers/index";
 
-const initialState = {};
+// const initialState = {};
 
-const middleware = [thunk];
+// const middleware = [thunk];
 
 // const changeState = (state = initialState, { type, ...rest }) => {
 //   switch (type) {
@@ -19,7 +19,7 @@ const middleware = [thunk];
 const store = createStore(
   rootReducer,
   //changeState,
-  initialState,
-  composeWithDevTools(applyMiddleware(...middleware))
+  // initialState,
+  composeWithDevTools(applyMiddleware(thunk))
 );
 export default store;
