@@ -3,7 +3,7 @@ import React from "react";
 // import * as echarts from "echarts/core";
 import { useDispatch, useSelector } from "react-redux";
 import { CCard, CCardBody, CCardGroup, CCardHeader } from "@coreui/react";
-import { retrieveData } from "../../actions/dataKWh";
+import { retrieveData } from "../../actions/dataGraphMeter";
 import {
   // CChartBar,
   CChartLine,

@@ -53,6 +53,7 @@ const Login = () => {
 
     dispatch(loginUser(no_meter, password))
       .then((data) => {
+        //console.log(data.no_meter);
         setUser({
           no_meter: data.no_meter,
           password: data.password,
