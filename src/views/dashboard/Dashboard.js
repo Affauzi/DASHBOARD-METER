@@ -55,7 +55,7 @@ const Dashboard = (props) => {
   //   const { name, value } = event.target;
   //   setDataMeter({ ...dataMeter, [name]: value });
   // };
-  const CheckInfo = () => {
+  const CheckInfoActiveTotal = () => {
     const { kwh, voltage, current } = dataMeter;
 
     dispatch(retrieveDataMeter())
@@ -63,10 +63,10 @@ const Dashboard = (props) => {
         console.log(data[0].ActiveTotal);
         setDataMeter({
           dataKwh: data[0].ActiveTotal,
-          dataVoltage: data[0].Voltage,
-          dataCurrent: data[0].Current,
+          // dataVoltage: data[0].Voltage,
+          // dataCurrent: data[0].Current,
         });
-        setSubmitted(true);
+        //setSubmitted(true);
       })
       .catch((e) => {
         console.log(e);
@@ -75,17 +75,60 @@ const Dashboard = (props) => {
     console.log(dataMeter.dataKwh);
   };
 
+  const CheckInfoVoltage = () => {
+    const { kwh, voltage, current } = dataMeter;
+
+    dispatch(retrieveDataMeter())
+      .then((data) => {
+        console.log(data[0].Voltage);
+        setDataMeter({
+          //dataKwh: data[0].ActiveTotal,
+          dataVoltage: data[0].Voltage,
+          // dataCurrent: data[0].Current,
+        });
+        //setSubmitted(true);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+
+    //console.log(dataMeter.dataKwh);
+  };
+
+  const CheckInfoCurrent = () => {
+    const { kwh, voltage, current } = dataMeter;
+
+    dispatch(retrieveDataMeter())
+      .then((data) => {
+        console.log(data[0].ActiveTotal);
+        setDataMeter({
+          // dataKwh: data[0].ActiveTotal,
+          // dataVoltage: data[0].Voltage,
+          dataCurrent: data[0].Current,
+        });
+        //setSubmitted(true);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+
+    // console.log(dataMeter.dataKwh);
+  };
+
   return (
     <>
       <div>
         <CRow>
           <CCol sm="6">
+            {/* <button onClick={CheckInfo}></button> */}
             <CCard>
               <CCardHeader>Total kWh</CCardHeader>
-              <CCardBody>
-                <p>{dataMeter.dataKwh}</p>
-              </CCardBody>
-              {/* <CCardFooter>Standard Footer.</CCardFooter> */}
+              <CCardBody>{dataMeter.dataKwh}</CCardBody>
+              <CCardFooter>
+                <CButton onClick={CheckInfoActiveTotal} color="info">
+                  Show Data
+                </CButton>
+              </CCardFooter>
             </CCard>
           </CCol>
           <CCol sm="6">
@@ -94,7 +137,11 @@ const Dashboard = (props) => {
               <CCardBody>
                 <p>{dataMeter.dataVoltage}</p>
               </CCardBody>
-              {/* <CCardFooter>Standard Footer.</CCardFooter> */}
+              <CCardFooter>
+                <CButton onClick={CheckInfoVoltage} color="info">
+                  Show Data
+                </CButton>
+              </CCardFooter>
             </CCard>
           </CCol>
           <CCol sm="6">
@@ -103,7 +150,11 @@ const Dashboard = (props) => {
               <CCardBody>
                 <p>{dataMeter.dataCurrent}</p>
               </CCardBody>
-              {/* <CCardFooter>Standard Footer.</CCardFooter> */}
+              <CCardFooter>
+                <CButton onClick={CheckInfoCurrent} color="info">
+                  Show Data
+                </CButton>
+              </CCardFooter>
             </CCard>
           </CCol>
           {/* <CCol sm="6">

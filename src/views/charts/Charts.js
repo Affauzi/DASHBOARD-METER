@@ -2,7 +2,13 @@ import React from "react";
 // import ReactECharts from "echarts-for-react";
 // import * as echarts from "echarts/core";
 import { useDispatch, useSelector } from "react-redux";
-import { CCard, CCardBody, CCardGroup, CCardHeader } from "@coreui/react";
+import {
+  CCard,
+  CCardBody,
+  CCardGroup,
+  CCardHeader,
+  CButton,
+} from "@coreui/react";
 import { retrieveData } from "../../actions/dataGraphMeter";
 import {
   // CChartBar,
@@ -35,9 +41,9 @@ const Charts = () => {
   return (
     <div className="charts">
       <div className={"btns-wrapper"}>
-        <button onClick={() => fetchData("GetDataGraph")}>
+        <CButton onClick={() => fetchData("GetDataGraph")} color="info">
           Generate Chart
-        </button>
+        </CButton>
         {/* <button onClick={() => fetchData("30Menit")}>30 Menit</button>
         <button onClick={() => fetchData("1Jam")}>1 Jam</button> */}
 

@@ -57,7 +57,7 @@ class App extends Component {
             <Route
               path="/"
               name="Default"
-              render={(props) => <TheLayout {...props} />}
+              render={(props) => <Login {...props} />}
             />
             <Route
               path="/charts"
