@@ -6,7 +6,12 @@ class DataAntares {
     return http.get("/data");
   }
   getOne() {
-    return http.get("/data/90111393");
+    // console.log("_________no Meter:", localStorage.getItem("user"));
+    var no_meter = sessionStorage.getItem("user");
+    //console.log(no_meter, typeof no_meter);
+    var url = `/data/${no_meter}`;
+    // console.log("------------URL:", url);
+    return http.get(url);
   }
 
   //   get(id) {

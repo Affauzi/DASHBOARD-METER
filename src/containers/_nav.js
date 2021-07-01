@@ -157,7 +157,7 @@ const _nav = [
   {
     _tag: "CSidebarNavItem",
     name: "Payment",
-    to: "/notifications/alerts",
+    to: "/payment",
     icon: "cil-calculator",
   },
   // {
